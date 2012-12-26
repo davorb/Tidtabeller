@@ -21,15 +21,7 @@ public class TimetableSectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int id) {
-    	Fragment fragment = new TimetableFragment(stationManager.get(0));    	
-    	Bundle args = new Bundle();
-//        args.putString(TimetableFragment.TRIP_ID, trip.getStationId());
-//        args.putString(TimetableFragment.TRIP_NAME, TripsManager.getTripName(stationId));
-    	
-    	
-    	
-        fragment.setArguments(args);
-        return fragment;
+        return new TimetableFragment(stationManager.get(id));    	
     }
 
 
@@ -40,6 +32,6 @@ public class TimetableSectionsPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		return stationManager.getLength();
+		return stationManager.length();
 	}
 }

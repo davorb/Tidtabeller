@@ -20,15 +20,12 @@ public class StationManager {
 		
 		
 		// TODO: fix
+		stations.add(new Station("Tre Hšgars Park"));
 		stations.add(new Station("TestarvŠgen"));
 	}
-	
-	public static int getCount() {
-		return 3;
-	}
 
-	public int getLength() {
-		return 1;
+	public int length() {
+		return stations.size();
 	}
 
 	public Station get(int i) {

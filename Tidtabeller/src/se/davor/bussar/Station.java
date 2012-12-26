@@ -12,14 +12,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class Station {
-	private static String stationName;
+	private String stationName;
 	private String stationId;
 	
 	public Station(String stationName) {
 		this.stationName = stationName;
 	}
 
-	public static String getStationName() {
+	public String getStationName() {
 		return stationName;
 	}
 
@@ -116,7 +116,7 @@ public class Station {
 		}
 
 	}
-	private static String SAMPLE_XML = "http://www.w3schools.com/xml/note.xml";
-	private static String DEPARTURE_ARRIVAL_REQUEST = 
+	private static final String SAMPLE_XML = "http://www.w3schools.com/xml/note.xml";
+	private static final String DEPARTURE_ARRIVAL_REQUEST = 
 			"http://www.labs.skanetrafiken.se/v2.2/stationresults.asp?selPointFrKey=";
 }
