@@ -12,22 +12,11 @@
             android:orientation="vertical" >
 
             <EditText
-                android:id="@+id/start_location"
+                android:id="@+id/station"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_start_location"
+                android:hint="@string/prompt_station"
                 android:inputType="textPostalAddress"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/stop_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_stop_location"
-                android:imeActionLabel="@string/action_stop_location_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true" />
 

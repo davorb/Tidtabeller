@@ -28,6 +28,6 @@ public class Trip {
 	}
 	
 	public String getTripName() {
-		return getStationSrcName()+" till "+getStationDestName();
+		return getStationSrcName();
 	}
 }

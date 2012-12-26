@@ -2,22 +2,9 @@
 
     <string name="title_activity_search">Lägg till stationer</string>
 
-    <!-- Strings related to login -->
-    <string name="action_sign_in_register"><b>Sign in</b> or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="menu_forgot_password">Recover lost password</string>
-    <string name="login_progress_signing_in">Signing in&#8230;</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-
-    
     <string name="action_add">Lägg till</string>
-    <string name="action_start_location_short">Hållplats</string>
-    <string name="action_stop_location_short">Slutstation</string>
-    <string name="prompt_start_location">Avgång</string>
-    <string name="prompt_stop_location">Slutstation</string>
+
+    <string name="prompt_station">Hållplatsens namn</string>
     
     <string name="search_notice">OBS! Det här programmet letar endast 
         bland stationer i Skåne</string>
