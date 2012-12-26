@@ -48,7 +48,7 @@ public class TimetableFragment extends Fragment {
     	TripsManager tm = new TripsManager();
     	try {
 			//list = 
-    		tm.getTimes(getArguments().getInt(TRIP_ID), this);
+    		tm.getTimes(getArguments().getString(TRIP_ID), this);
 		} catch (IOException e) {
 			Log.e("Network", "Connection error.");
 			e.printStackTrace();

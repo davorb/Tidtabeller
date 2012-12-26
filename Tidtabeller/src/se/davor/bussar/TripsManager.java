@@ -15,24 +15,24 @@ import android.util.Log;
 public class TripsManager {
 
 	public static int getCount() {
-		return 1;
+		return 3;
 	}
 
-	public static String getTripName(int tripId) {
-		switch(tripId) {
-		case 0 :
-			return "A till B";
-		case 1 :
-			return "C till D";
-		case 2 :
-			return "E till F";
-		}
-		return null;
-	}
+//	public static String getTripName(int tripId) {
+//		switch(tripId) {
+//		case 0 :
+//			return "A till B";
+//		case 1 :
+//			return "C till D";
+//		case 2 :
+//			return "E till F";
+//		}
+//		return null;
+//	}
 	
-	public ArrayList<String> getTimes(int tripId, TimetableFragment tf) throws IOException {
+	public ArrayList<String> getTimes(String tripId, TimetableFragment tf) throws IOException {
 		ArrayList<String> list = new ArrayList<String>();
-		new Downloader(tf).execute();
+		new Downloader(tf, tripId).execute();
     	list.add("lol");
     	return list;
 	}
@@ -40,9 +40,11 @@ public class TripsManager {
 	private class Downloader extends AsyncTask<Void, Void, ArrayList<TimeEntry>> {
 		
 		private TimetableFragment o;
+		private String tripId;
 		
-		public Downloader(TimetableFragment o) {
+		public Downloader(TimetableFragment o, String tripId) {
 			this.o = o;
+			this.tripId = tripId;
 		}
 
 		@Override
@@ -50,7 +52,7 @@ public class TripsManager {
 			InputStream data = null;
 			ArrayList<TimeEntry> result = null;
 			try {
-				data = fetchTripData(null, null);
+				data = fetchTripData(tripId); // TODO: Trip!
 
 				result = 
 						new XmlParser().parseDepartureArrival("random", data);
@@ -81,10 +83,10 @@ public class TripsManager {
         		o.add_time(item);	
 		}
 		
-		private InputStream fetchTripData(String src, String dest) throws IOException {
-			Log.d("Connection", "Fetching data.");
+		private InputStream fetchTripData(String tripId) throws IOException {
+			Log.d("Connection", "Fetching data for trip "+tripId);
 			InputStream is = null;
-			URL url = new URL(DEPARTURE_ARRIVAL_REQUEST);
+			URL url = new URL(DEPARTURE_ARRIVAL_REQUEST+tripId);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setReadTimeout(10000);
 			conn.setConnectTimeout(15000);
@@ -92,7 +94,7 @@ public class TripsManager {
 			conn.setDoInput(true);
 			conn.connect(); 
 			int response = conn.getResponseCode();
-			Log.d("Connection", "The response is; "+response);			
+			Log.d("Connection", "The response is: "+response);			
 			is = conn.getInputStream(); 
 			return is;
 		}
@@ -113,5 +115,5 @@ public class TripsManager {
 	}
 	private static String SAMPLE_XML = "http://www.w3schools.com/xml/note.xml";
 	private static String DEPARTURE_ARRIVAL_REQUEST = 
-			"http://www.labs.skanetrafiken.se/v2.2/stationresults.asp?selPointFrKey=81811";
+			"http://www.labs.skanetrafiken.se/v2.2/stationresults.asp?selPointFrKey=";
 }

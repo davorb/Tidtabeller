@@ -9,8 +9,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 	private FragmentActivity fa;
 	
+	private Trip trip; // TODO: Move this out
+	
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
+        
+        trip = new Trip("Tre Hšgars Park", "Ole Ršmers VŠg"); // TODO: Add loader for this shit
     }
     
     public void setFragmentActivity(FragmentActivity fa) {
@@ -18,11 +22,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem(int id) {
+    	// TODO: Add class for loading of trips
+    	
+    	
+    	
     	Fragment fragment = new TimetableFragment();    	
     	Bundle args = new Bundle();
-        args.putInt(TimetableFragment.TRIP_ID, position + 1);
-        args.putString(TimetableFragment.TRIP_NAME, TripsManager.getTripName(position));
+        args.putString(TimetableFragment.TRIP_ID, trip.getStationId());
+//        args.putString(TimetableFragment.TRIP_NAME, TripsManager.getTripName(stationId));
         fragment.setArguments(args);
         return fragment;
     }
@@ -35,6 +43,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-    	return TripsManager.getTripName(position);
+    	return trip.getTripName();
     }
 }

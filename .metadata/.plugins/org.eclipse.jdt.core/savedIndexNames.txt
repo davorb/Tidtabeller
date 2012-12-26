@@ -1,3 +1,0 @@
-INDEX VERSION 1.126+/Users/davor/Development/bussar/.metadata/.plugins/org.eclipse.jdt.core
-3645381679.index
-118934642.index
