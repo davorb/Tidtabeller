@@ -21,9 +21,10 @@ public class TimetableFragment extends Fragment {
 	public static final String TRIP_NAME = "se.davor.bussar.trip_name";
 
 	private ArrayAdapter<String> aa;
+	private Station station;
 	
-    public TimetableFragment() {
-
+    public TimetableFragment(Station station) {
+    	this.station = station;
     }
 
     @Override
@@ -45,10 +46,9 @@ public class TimetableFragment extends Fragment {
     	
 		aa = new ArrayAdapter<String>(getActivity(), 
     			android.R.layout.simple_list_item_1, list);
-    	TripsManager tm = new TripsManager();
+		
     	try {
-			//list = 
-    		tm.getTimes(getArguments().getString(TRIP_ID), this);
+    		station.getTimes(this);
 		} catch (IOException e) {
 			Log.e("Network", "Connection error.");
 			e.printStackTrace();

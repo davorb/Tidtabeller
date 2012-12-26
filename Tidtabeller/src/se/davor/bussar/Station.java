@@ -8,31 +8,34 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class TripsManager {
-
-	public static int getCount() {
-		return 3;
+public class Station {
+	private static String stationName;
+	private String stationId;
+	
+	public Station(String stationName) {
+		this.stationName = stationName;
 	}
 
-//	public static String getTripName(int tripId) {
-//		switch(tripId) {
-//		case 0 :
-//			return "A till B";
-//		case 1 :
-//			return "C till D";
-//		case 2 :
-//			return "E till F";
-//		}
-//		return null;
-//	}
-	
-	public ArrayList<String> getTimes(String tripId, TimetableFragment tf) throws IOException {
+	public static String getStationName() {
+		return stationName;
+	}
+
+	public String getStationId() {
+		if (stationId == null) // TODO: Check from disk
+			stationId = findStationId();
+		return stationId;
+	}
+
+	private String findStationId() {
+		return "81811"; // TODO: fix
+	}
+
+	public ArrayList<String> getTimes(TimetableFragment tf) throws IOException {
 		ArrayList<String> list = new ArrayList<String>();
-		new Downloader(tf, tripId).execute();
+		new Downloader(tf, getStationId()).execute();
     	list.add("lol");
     	return list;
 	}
