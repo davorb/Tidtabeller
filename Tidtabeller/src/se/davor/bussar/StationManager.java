@@ -58,14 +58,10 @@ public class StationManager {
 		
 		private Downloader(SearchSelectActivity ssa) {
 			this.ssa = ssa;
-			Log.d("downloadersearch", "Created search downloader");
 		}
 		
 		@Override
 		protected void onPostExecute(ArrayList<Station> result) {
-			Log.d("downloadersearch", "test");
-			
-			ssa.add(new Station("test?"));
 			for (Station s : result) {
 				ssa.add(s);
 			}
@@ -73,17 +69,13 @@ public class StationManager {
 		
 		@Override
 		protected ArrayList<Station> doInBackground(String... arg) {
-			Log.d("downloadersearch", "Doing in background");
 			String searchString = arg[0];
 			InputStream data = null;
 			ArrayList<Station> result = null;
 			try {
-				Log.d("downloadersearch", "Fetching data");
 				data = fetchStationData(searchString);
-				Log.d("downloadersearch", "Fetched.");
 				result = 
 						new XmlParser().parseSearchStationArrival(data);
-				Log.d("downloadersearch", "Parsed result");
 			} catch (IOException e) { 
 				Log.e("downloadersearch", "Failed to get data.");
 				e.printStackTrace();				
@@ -125,7 +117,7 @@ public class StationManager {
 			    total.append(line);
 			}
 			if (line == null)
-				Log.e("SearchConnection", "Read null from network");
+				Log.e("downloadersearch", "Read null from network");
 			return line;
 		}
 
