@@ -71,4 +71,46 @@ public class XmlParser {
 		}
 		return doc;
 	}
+
+	public ArrayList<Station> parseSearchStationArrival(InputStream stream) {
+		ArrayList<Station> stations = new ArrayList<Station>();
+		InputSource is = new InputSource();
+        is.setCharacterStream(new InputStreamReader(stream));
+		
+		Document doc = getDoc(is);
+		
+		if (doc == null)
+			Log.e("XmlParser", "Doc is null");
+			
+		NodeList nl = null;
+		NodeList children = null;
+		Node node = null;
+		String name, id;
+		Station station = null;
+
+		try {
+			nl = doc.getElementsByTagName("Point");
+			
+			for (int i=0; i < nl.getLength(); i++) {
+				node = nl.item(i);
+				children = node.getChildNodes();
+				
+				id   = children.item(0).getFirstChild().getNodeValue();
+				name = children.item(1).getFirstChild().getNodeValue();
+
+				station = new Station(name);
+				station.setStationId(id);
+				
+				if (name != null) {
+					stations.add(station);
+				} else {
+					Log.e("XmlParser", "Null node value");
+				}
+			}
+		} catch (Exception e) {
+			Log.e("Xml", "Failed to find xml tag.");
+			e.printStackTrace();
+		}
+		return stations;
+	}
 }

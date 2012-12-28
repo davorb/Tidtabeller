@@ -120,7 +120,13 @@ public class Station {
 		}
 
 	}
+
+	public void setStationId(String id) {
+		this.stationId = id;
+	}
+	
 	private static final String SAMPLE_XML = "http://www.w3schools.com/xml/note.xml";
 	private static final String DEPARTURE_ARRIVAL_REQUEST = 
 			"http://www.labs.skanetrafiken.se/v2.2/stationresults.asp?selPointFrKey=";
+
 }
