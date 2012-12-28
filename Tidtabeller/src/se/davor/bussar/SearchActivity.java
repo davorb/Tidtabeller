@@ -10,7 +10,7 @@ import android.widget.EditText;
 public class SearchActivity extends Activity {
 
 	// UI references.
-	private EditText mStartLocationView;
+	private EditText mStationNameView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class SearchActivity extends Activity {
 		setContentView(R.layout.activity_search);
 
 		// Set up the login form.
-		mStartLocationView = (EditText) findViewById(R.id.station);
+		mStationNameView = (EditText) findViewById(R.id.station);
 
 		findViewById(R.id.add_button).setOnClickListener(
 				new View.OnClickListener() {
@@ -38,7 +38,8 @@ public class SearchActivity extends Activity {
 	}
 
 	public void addStation() {
-		StationManager.getInstance().add(new Station("Addedvägen"));
+		String stationName = mStationNameView.getText().toString();
+		StationManager.getInstance().add(new Station(stationName));
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
