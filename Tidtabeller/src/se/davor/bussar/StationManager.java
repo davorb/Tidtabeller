@@ -13,15 +13,22 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class StationManager {
-	ArrayList<Station> stations;
+	private ArrayList<Station> stations;
+	private static StationManager instance;
 	
 	public StationManager() {
 		this.stations = new ArrayList<Station>();
 		
-		
 		// TODO: fix
 		stations.add(new Station("Tre Högars Park"));
 		stations.add(new Station("Testarvägen"));
+	}
+	
+	public static StationManager getInstance() {
+		if (instance == null)
+			instance = new StationManager();
+		
+		return instance;
 	}
 
 	public int length() {

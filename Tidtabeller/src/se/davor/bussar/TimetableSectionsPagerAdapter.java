@@ -8,11 +8,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class TimetableSectionsPagerAdapter extends FragmentPagerAdapter {
 	private FragmentActivity fa;
-	private StationManager stationManager;
 	
     public TimetableSectionsPagerAdapter(FragmentManager fm) {
         super(fm);
-        stationManager = new StationManager(); // TODO: Fix!
     }
     
     public void setFragmentActivity(FragmentActivity fa) {
@@ -21,17 +19,17 @@ public class TimetableSectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int id) {
-        return new TimetableFragment(stationManager.get(id));    	
+        return new TimetableFragment(StationManager.getInstance().get(id));    	
     }
 
 
     @Override
     public CharSequence getPageTitle(int position) {
-    	return stationManager.get(position).getStationName();
+    	return StationManager.getInstance().get(position).getStationName();
     }
 
 	@Override
 	public int getCount() {
-		return stationManager.length();
+		return StationManager.getInstance().length();
 	}
 }
