@@ -21,12 +21,12 @@ public class SearchSelectActivity extends Activity {
 		Intent intent = getIntent();
 		String searchString = intent.getStringExtra(SearchActivity.SEARCH_TEXT);
 
-		ArrayList<String> arrayList = StationManager.getInstance().searchStations(searchString);
+		ArrayList<Station> arrayList = StationManager.getInstance().searchStations(searchString);
 				
 		final ListView stationsListView = 
 				(ListView) findViewById(R.id.stationsListView);
-		ArrayAdapter<String> aa = 
-				new ArrayAdapter<String>(this, 
+		ArrayAdapter<Station> aa = 
+				new ArrayAdapter<Station>(this, 
 						android.R.layout.simple_expandable_list_item_1, 
 						arrayList);
 		stationsListView.setAdapter(aa);

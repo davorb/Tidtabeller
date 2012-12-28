@@ -32,6 +32,10 @@ public class Station {
 	private String findStationId() {
 		return "81811"; // TODO: fix
 	}
+	
+	public String toString() {
+		return stationName;
+	}
 
 	public ArrayList<String> getTimes(TimetableFragment tf) throws IOException {
 		ArrayList<String> list = new ArrayList<String>();
