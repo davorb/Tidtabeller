@@ -20,8 +20,7 @@ public class StationManager {
 		this.stations = new ArrayList<Station>();
 		
 		// TODO: fix
-		stations.add(new Station("Tre Högars Park"));
-		stations.add(new Station("Testarvägen"));
+		add(new Station("Tre Högars Park"));
 	}
 	
 	public static StationManager getInstance() {
@@ -37,6 +36,10 @@ public class StationManager {
 
 	public Station get(int i) {
 		return stations.get(i);
+	}
+
+	public void add(Station station) {
+		stations.add(station);
 	}
 	
 }
