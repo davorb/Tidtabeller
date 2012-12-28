@@ -32,10 +32,11 @@ public class StationManager {
 		stations.add(station);
 	}
 	
-	public ArrayList<String> searchStations(String searchString) {
-		ArrayList<String> results = new ArrayList<String>();
-		results.add("result 1");
-		results.add(searchString);
+	public ArrayList<Station> searchStations(String searchString) {
+		ArrayList<Station> results = new ArrayList<Station>();
+		
+		results.add(new Station("result 1")); // TODO
+		results.add(new Station(searchString));
 		
 		return results;
 	}
