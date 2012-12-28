@@ -1,16 +1,6 @@
 package se.davor.bussar;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-
-import android.os.AsyncTask;
-import android.util.Log;
 
 public class StationManager {
 	private ArrayList<Station> stations;
@@ -40,6 +30,14 @@ public class StationManager {
 
 	public void add(Station station) {
 		stations.add(station);
+	}
+	
+	public ArrayList<String> searchStations(String searchString) {
+		ArrayList<String> results = new ArrayList<String>();
+		results.add("result 1");
+		results.add(searchString);
+		
+		return results;
 	}
 	
 }

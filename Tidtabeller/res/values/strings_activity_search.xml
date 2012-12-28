@@ -2,7 +2,7 @@
 
     <string name="title_activity_search">Lägg till stationer</string>
 
-    <string name="action_add">Lägg till</string>
+    <string name="action_add">Sök</string>
 
     <string name="prompt_station">Hållplatsens namn</string>
     

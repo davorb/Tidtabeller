@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 
 public class SearchActivity extends Activity {
-
+	public static final String SEARCH_TEXT = "se.davor.bussar.search_text";
+	
 	// UI references.
 	private EditText mStationNameView;
 
@@ -38,9 +39,9 @@ public class SearchActivity extends Activity {
 	}
 
 	public void addStation() {
+		Intent intent = new Intent(this, SearchSelectActivity.class);
 		String stationName = mStationNameView.getText().toString();
-		StationManager.getInstance().add(new Station(stationName));
-		Intent intent = new Intent(this, MainActivity.class);
+		intent.putExtra(SEARCH_TEXT, stationName);
 		startActivity(intent);
 	}
 }

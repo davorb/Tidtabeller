@@ -5,11 +5,11 @@
     android:versionName="1.0" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="16" />
-    
 
     <application
         android:allowBackup="true"
@@ -29,6 +29,10 @@
             android:name="se.davor.bussar.SearchActivity"
             android:label="@string/title_activity_search"
             android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="se.davor.bussar.SearchSelectActivity"
+            android:label="@string/title_activity_search_select" >
         </activity>
     </application>
 
