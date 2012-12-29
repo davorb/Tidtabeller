@@ -50,8 +50,13 @@ public class MainActivity extends FragmentActivity {
         return true;
     }    
     
-    public void addTrip(MenuItem mitem) {
+    public void addStation(MenuItem mitem) {
     	Intent intent = new Intent(this, SearchActivity.class);
+    	startActivity(intent);
+    }
+    
+    public void removeStation(MenuItem mitem) {
+    	Intent intent = new Intent(this, RemoveStationActivity.class);
     	startActivity(intent);
     }
 

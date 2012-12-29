@@ -5,7 +5,7 @@
     <string name="menu_remove">Ta bort resor</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_search_select">SearchSelectActivity</string>
+    <string name="title_activity_remove_station">RemoveStationActivity</string>
 
-    
-    <string name="hello_world">Hello world!</string>
+    <string name="remove_explanation">Klicka på den station som du vill ta bort</string>
 </resources>

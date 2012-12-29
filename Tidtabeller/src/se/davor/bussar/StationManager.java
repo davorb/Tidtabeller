@@ -13,6 +13,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class StationManager {
+	private static final String SAMPLE_XML = "http://www.w3schools.com/xml/note.xml";
+	private static final String STATION_SEARCH_REQUEST = 
+			"http://www.labs.skanetrafiken.se/v2.2/querystation.asp?inpPointfr=";
+	
 	private ArrayList<Station> stations;
 	private static StationManager instance;
 	
@@ -42,14 +46,18 @@ public class StationManager {
 		stations.add(station);
 	}
 	
+	public ArrayList<Station> getStations() {
+		return stations;
+	}
+	
 	public ArrayList<Station> searchStations(SearchSelectActivity ssa, String searchString) {
 		ArrayList<Station> results = new ArrayList<Station>();
-		
-//		results.add(new Station("result 1")); // TODO
-//		results.add(new Station(searchString));
 		new Downloader(ssa).execute(searchString);
-		
 		return results;
+	}
+
+	public void remove(Station station) {
+		stations.remove(station);
 	}
 	
 	//////////
@@ -122,10 +130,7 @@ public class StationManager {
 		}
 
 	}
-	
-	
-	private static final String SAMPLE_XML = "http://www.w3schools.com/xml/note.xml";
-	private static final String STATION_SEARCH_REQUEST = 
-			"http://www.labs.skanetrafiken.se/v2.2/querystation.asp?inpPointfr=";
+
+
 
 }

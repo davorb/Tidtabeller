@@ -34,6 +34,10 @@
             android:name="se.davor.bussar.SearchSelectActivity"
             android:label="@string/title_activity_search_select" >
         </activity>
+        <activity
+            android:name="se.davor.bussar.RemoveStationActivity"
+            android:label="@string/title_activity_remove_station" >
+        </activity>
     </application>
 
 </manifest>
