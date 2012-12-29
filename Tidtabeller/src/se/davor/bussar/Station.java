@@ -15,8 +15,9 @@ public class Station {
 	private String stationName;
 	private String stationId;
 	
-	public Station(String stationName) {
+	public Station(String stationName, String stationId) {
 		this.stationName = stationName;
+		this.stationId = stationId;
 	}
 
 	public String getStationName() {

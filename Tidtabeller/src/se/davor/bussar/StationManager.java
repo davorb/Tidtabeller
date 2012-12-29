@@ -24,8 +24,7 @@ public class StationManager {
 		this.stations = new ArrayList<Station>();
 		
 		// TODO: fix
-		Station tmp = new Station("Teststation");
-		tmp.setStationId("81811");
+		Station tmp = new Station("Teststation", "81811");
 		add(tmp);
 	}
 	

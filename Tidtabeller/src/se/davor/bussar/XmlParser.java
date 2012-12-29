@@ -98,8 +98,7 @@ public class XmlParser {
 				id   = children.item(0).getFirstChild().getNodeValue();
 				name = children.item(1).getFirstChild().getNodeValue();
 
-				station = new Station(name);
-				station.setStationId(id);
+				station = new Station(name, id);
 				
 				if (name != null) {
 					stations.add(station);
