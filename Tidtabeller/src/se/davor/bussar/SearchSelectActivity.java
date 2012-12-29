@@ -23,7 +23,7 @@ public class SearchSelectActivity extends Activity {
 		String searchString = intent.getStringExtra(SearchActivity.SEARCH_TEXT);
 
 		ArrayList<Station> arrayList = 
-				StationManager.getInstance().searchStations(this, searchString);
+				StationManager.getInstance(this).searchStations(this, searchString);
 				
 		final ListView stationsListView = 
 				(ListView) findViewById(R.id.stationsListView);
@@ -35,7 +35,7 @@ public class SearchSelectActivity extends Activity {
 		stationsListView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
 				Station selectedFromList = (Station)(stationsListView.getItemAtPosition(myItemInt));
-				StationManager.getInstance().add(selectedFromList);
+				StationManager.getInstance(a).add(selectedFromList, a);
 				Intent mainIntent = new Intent(a, MainActivity.class);
 				startActivity(mainIntent);
 		    }    

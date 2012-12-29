@@ -20,7 +20,7 @@ public class RemoveStationActivity extends Activity {
 		setContentView(R.layout.activity_remove_station);
 		
 		ArrayList<Station> stations =
-				StationManager.getInstance().getStations();
+				StationManager.getInstance(this).getStations();
 		final ListView removeListView = 
 				(ListView) findViewById(R.id.removeListView);
 		ArrayAdapter<Station> aa = 
@@ -33,7 +33,7 @@ public class RemoveStationActivity extends Activity {
 		removeListView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
 				Station selectedFromList = (Station)(removeListView.getItemAtPosition(myItemInt));
-				StationManager.getInstance().remove(selectedFromList);
+				StationManager.getInstance(a).remove(selectedFromList, a);
 				Intent mainIntent = new Intent(a, MainActivity.class);
 				startActivity(mainIntent);
 		    }    

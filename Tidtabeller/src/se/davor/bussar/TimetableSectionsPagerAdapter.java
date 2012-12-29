@@ -19,17 +19,17 @@ public class TimetableSectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int id) {
-        return new TimetableFragment(StationManager.getInstance().get(id));    	
+        return new TimetableFragment(StationManager.getInstance(fa).get(id));    	
     }
 
 
     @Override
     public CharSequence getPageTitle(int position) {
-    	return StationManager.getInstance().get(position).getStationName();
+    	return StationManager.getInstance(fa).get(position).getStationName();
     }
 
 	@Override
 	public int getCount() {
-		return StationManager.getInstance().length();
+		return StationManager.getInstance(fa).length();
 	}
 }

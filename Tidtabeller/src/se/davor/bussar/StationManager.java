@@ -8,7 +8,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -16,21 +21,21 @@ public class StationManager {
 	private static final String SAMPLE_XML = "http://www.w3schools.com/xml/note.xml";
 	private static final String STATION_SEARCH_REQUEST = 
 			"http://www.labs.skanetrafiken.se/v2.2/querystation.asp?inpPointfr=";
+	private static final String SAVED_STATION_NAMES = "se.davor.bussar.saved_station_names";
+	private static final String SAVED_STATION_IDS   = "se.davor.bussar.saved_station_ids";
+	private static final String APP					= "se.davor.bussar";
 	
 	private ArrayList<Station> stations;
 	private static StationManager instance;
 	
-	public StationManager() {
-		this.stations = new ArrayList<Station>();
-		
-		// TODO: fix
-		Station tmp = new Station("Teststation", "81811");
-		add(tmp);
+	public StationManager(Activity a) {	
+		loadValues(a);
+		Log.d("StationManager", "Created new instance");
 	}
 	
-	public static StationManager getInstance() {
+	public static StationManager getInstance(Activity a) {
 		if (instance == null)
-			instance = new StationManager();
+			instance = new StationManager(a);
 		
 		return instance;
 	}
@@ -43,8 +48,69 @@ public class StationManager {
 		return stations.get(i);
 	}
 
-	public void add(Station station) {
+	public void add(Station station, Activity a) {
 		stations.add(station);
+		saveValues(a);
+	}
+	
+	public void remove(Station station, Activity a) {
+		stations.remove(station);
+		saveValues(a);
+	}
+	
+	private void saveValues(Activity a) {
+		SharedPreferences sharedPrefs = a.getSharedPreferences(APP, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPrefs.edit();
+		
+		ArrayList<String> stationNames = new ArrayList<String>();
+		ArrayList<String> stationIds   = new ArrayList<String>();
+	
+		for (Station s : stations) {
+			Log.d("StationSaver", "Saving station: "+s.toString());
+			stationNames.add(s.getStationName());
+			stationIds.add(s.getStationId());
+		}
+		Set<String> nameSet = new HashSet<String>(stationNames);
+		Set<String> idSet   = new HashSet<String>(stationIds);
+		
+		editor.putStringSet(SAVED_STATION_NAMES, nameSet);
+		editor.putStringSet(SAVED_STATION_IDS, idSet);
+		editor.commit();
+		Log.d("StationSaver", "Saving "+nameSet.size()+" stations");
+	}
+	
+	private void loadValues(Activity a) {
+		SharedPreferences sharedPrefs = a.getSharedPreferences(APP, Context.MODE_PRIVATE);
+		
+		Set<String> stationNamesSet = new HashSet<String>();
+		Set<String> stationIdsSet = new HashSet<String>();
+		stationNamesSet = sharedPrefs.getStringSet(SAVED_STATION_NAMES, stationNamesSet);
+		stationIdsSet = sharedPrefs.getStringSet(SAVED_STATION_IDS, stationIdsSet);
+		
+		String[] names = new String[stationNamesSet.size()];
+		String[] ids = new String[stationIdsSet.size()];
+		names = stationNamesSet.toArray(names);
+		ids   = stationIdsSet.toArray(ids);
+		
+		int length = stationIdsSet.size() - stationNamesSet.size();
+		if (length != 0) {
+			Log.e("StationLoader", "Id and name sets are not the same size. Id: "+
+					stationIdsSet.size()+", name: "+stationNamesSet.size());
+		} else if (stationIdsSet.size() == 0) {
+			Log.w("StationLoader", "Id and name sets are size zero. Id: "+
+					stationIdsSet.size()+", name: "+stationNamesSet.size());
+		}
+		
+		Log.d("StationLoader", "Loading "+stationIdsSet.size()+" stations.");
+		Log.d("StationLoaderIds", stationIdsSet.toString());
+		Log.d("StationLoaderNames", stationNamesSet.toString());
+		
+		ArrayList<Station> stationList = new ArrayList<Station>();
+		for (int i=0; i < stationNamesSet.size(); i++) {
+			Station s = new Station(names[i], ids[i]);
+			stationList.add(s);
+		}
+		this.stations = stationList;
 	}
 	
 	public ArrayList<Station> getStations() {
@@ -55,10 +121,6 @@ public class StationManager {
 		ArrayList<Station> results = new ArrayList<Station>();
 		new Downloader(ssa).execute(searchString);
 		return results;
-	}
-
-	public void remove(Station station) {
-		stations.remove(station);
 	}
 	
 	//////////
