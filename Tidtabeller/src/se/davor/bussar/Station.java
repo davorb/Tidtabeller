@@ -24,13 +24,7 @@ public class Station {
 	}
 
 	public String getStationId() {
-		if (stationId == null) // TODO: Check from disk
-			stationId = findStationId();
 		return stationId;
-	}
-
-	private String findStationId() {
-		return "81811"; // TODO: fix
 	}
 	
 	public String toString() {
