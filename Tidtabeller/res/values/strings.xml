@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Tidtabeller</string>
-    <string name="menu_remove">Ta bort resor</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_remove">Ta bort hållplatser</string>
     <string name="title_activity_search_select">SearchSelectActivity</string>
     <string name="title_activity_remove_station">RemoveStationActivity</string>
-
-    <string name="remove_explanation">Klicka på den station som du vill ta bort</string>
 </resources>
