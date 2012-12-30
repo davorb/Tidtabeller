@@ -33,27 +33,30 @@ public class TimetableFragment extends Fragment {
     	ConnectivityManager connMgr = 
 				(ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-		TextView textView = new TextView(getActivity());
-		if (networkInfo == null || !networkInfo.isConnected()) {
-			Log.e("Network", "No network connection");
-			textView = new TextView(getActivity());
-			textView.setText("No network connection."); // TODO: Add to strings
-			return textView;
-		}    	
-    	
+		TextView textView = new TextView(getActivity());    	
     	ListView listView = new ListView(getActivity());
     	ArrayList<String> list = new ArrayList<String>();
     	
 		aa = new ArrayAdapter<String>(getActivity(), 
     			android.R.layout.simple_list_item_1, list);
 		
+		if (networkInfo == null || !networkInfo.isConnected()) {
+			Log.e("Network", "No network connection");
+			textView = new TextView(getActivity());
+			textView.setText(getResources().getString(R.string.error_no_network));
+			return textView;
+		}    
     	try {
     		station.getTimes(this);
 		} catch (IOException e) {
 			Log.e("Network", "Connection error.");
 			e.printStackTrace();
-			textView.setText("Connection error."); // TODO: Add to strings
+			textView.setText(getResources().getString(R.string.error_connection));
 			return textView;
+		} catch (Exception e) {
+			Log.e("Network", "Error getting times.");
+			e.printStackTrace();
+			textView.setText(getResources().getString(R.string.error_times));
 		}
     	
     	listView.setAdapter(aa);

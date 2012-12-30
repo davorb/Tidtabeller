@@ -4,4 +4,9 @@
     <string name="menu_remove">Ta bort hållplatser</string>
     <string name="title_activity_search_select">Hållplats som du vill lägga till</string>
     <string name="title_activity_remove_station">Ta bort hållplats</string>
+    
+    <string name="error_no_network">Du verkar sakna en anslutning.
+        Försök igen senare. (error 0)</string>
+    <string name="error_connection">Det gick inte att ansluta. (error 1)</string>
+    <string name="error_times">Det gick inte att ansluta. (error 3))</string>
 </resources>
