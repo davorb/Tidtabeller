@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +16,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.text.Html;
 import android.util.Log;
 
 public class StationManager {
@@ -118,8 +120,16 @@ public class StationManager {
 	}
 	
 	public ArrayList<Station> searchStations(SearchSelectActivity ssa, String searchString) {
+		String encodedString = searchString;
+		try {
+			encodedString = URLEncoder.encode(searchString, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			Log.e("SearchStations", "Failed to encode the search string: "+searchString);
+			e.printStackTrace();
+		}
+		
 		ArrayList<Station> results = new ArrayList<Station>();
-		new Downloader(ssa).execute(searchString);
+		new Downloader(ssa).execute(encodedString);
 		return results;
 	}
 	
